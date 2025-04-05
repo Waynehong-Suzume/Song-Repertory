@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>후즈아트 공연 투표</title>
+  <title>후즈아트 공연 후보곡 & 투표</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>🎶 예술기획단체 후즈아트 10기 청바지팀 공연 후보곡 투표</h1>
-    <p class="subtitle">이번 공연에 사용할 음악들입니다. 마음에 드는 곡을 모두 선택해 주세요!</p>
+    <h1>🎶 예술기획단체 후즈아트 10기 청바지팀 공연 후보곡</h1>
+    <p class="subtitle">이번 공연에 사용할 음악들입니다. 마음에 드는 곡을 체크하고 유튜브에서 들어보세요!</p>
     <form id="voteForm">
       <ul id="songList">
       </ul>
@@ -20,45 +20,44 @@
 
   <script>
     const songs = [
-      "A Whole New World, 알라딘",
-      "Bundle of Joy, 인사이드 아웃",
-      "How Far I’ll Go, 모아나",
-      "I See the Light, 라푼젤",
-      "Le Festin, 라따뚜이",
-      "Sparkle, 너의 이름은",
-      "Steal The Show, 엘리멘탈",
-      "This is me, 위대한 쇼맨",
-      "Try Everything, 주토피아",
-      "すずめ (Suzume), 스즈메의 문단속",
-      "너를 태우고, 천공의 성 라퓨타",
-      "바다가 보이는 마을, 마녀 배달부 키키",
-      "벼랑 위의 포뇨, 벼랑 위의 포뇨",
-      "산책, 이웃집 토토로",
-      "세계의 약속, 하울의 움직이는 성",
-      "아시타카의 전설, 원령공주",
-      "어느 여름날, 센과 치히로의 행방불명",
-      "오월의 마을, 이웃집 토토로",
-      "인생의 회전목마, 하울의 움직이는 성"
+      { title: "A Whole New World, 알라딘", url: "https://www.youtube.com/results?search_query=A+Whole+New+World+알라딘" },
+      { title: "Bundle of Joy, 인사이드 아웃", url: "https://www.youtube.com/results?search_query=Bundle+of+Joy+인사이드+아웃" },
+      { title: "How Far I’ll Go, 모아나", url: "https://www.youtube.com/results?search_query=How+Far+I’ll+Go+모아나" },
+      { title: "I See the Light, 라푼젤", url: "https://www.youtube.com/results?search_query=I+See+the+Light+라푼젤" },
+      { title: "Le Festin, 라따뚜이", url: "https://www.youtube.com/results?search_query=Le+Festin+라따뚜이" },
+      { title: "Sparkle, 너의 이름은", url: "https://www.youtube.com/results?search_query=Sparkle+너의+이름은" },
+      { title: "Steal The Show, 엘리멘탈", url: "https://www.youtube.com/results?search_query=Steal+The+Show+엘리멘탈" },
+      { title: "This is me, 위대한 쇼맨", url: "https://www.youtube.com/results?search_query=This+is+me+위대한+쇼맨" },
+      { title: "Try Everything, 주토피아", url: "https://www.youtube.com/results?search_query=Try+Everything+주토피아" },
+      { title: "すずめ (Suzume), 스즈메의 문단속", url: "https://www.youtube.com/results?search_query=すずめ+(Suzume)+스즈메의+문단속" },
+      { title: "너를 태우고, 천공의 성 라퓨타", url: "https://www.youtube.com/results?search_query=너를+태우고+천공의+성+라퓨타" },
+      { title: "바다가 보이는 마을, 마녀 배달부 키키", url: "https://www.youtube.com/results?search_query=바다가+보이는+마을+마녀+배달부+키키" },
+      { title: "벼랑 위의 포뇨, 벼랑 위의 포뇨", url: "https://www.youtube.com/results?search_query=벼랑+위의+포뇨+벼랑+위의+포뇨" },
+      { title: "산책, 이웃집 토토로", url: "https://www.youtube.com/results?search_query=산책+이웃집+토토로" },
+      { title: "세계의 약속, 하울의 움직이는 성", url: "https://www.youtube.com/results?search_query=세계의+약속+하울의+움직이는+성" },
+      { title: "아시타카의 전설, 원령공주", url: "https://www.youtube.com/results?search_query=아시타카의+전설+원령공주" },
+      { title: "어느 여름날, 센과 치히로의 행방불명", url: "https://www.youtube.com/results?search_query=어느+여름날+센과+치히로의+행방불명" },
+      { title: "오월의 마을, 이웃집 토토로", url: "https://www.youtube.com/results?search_query=오월의+마을+이웃집+토토로" },
+      { title: "인생의 회전목마, 하울의 움직이는 성", url: "https://www.youtube.com/results?search_query=인생의+회전목마+하울의+움직이는+성" }
     ];
 
-    const songList = document.getElementById("songList");
-
+    const list = document.getElementById("songList");
     songs.forEach((song, index) => {
       const li = document.createElement("li");
       li.innerHTML = \`
-        <label>
-          <input type="checkbox" name="song" value="\${song}" />
-          \${song}
+        <label class="song-item">
+          <input type="checkbox" name="song" value="\${song.title}" />
+          <a href="\${song.url}" target="_blank">\${song.title}</a>
         </label>
       \`;
-      songList.appendChild(li);
+      list.appendChild(li);
     });
 
     document.getElementById("voteForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const checkedSongs = Array.from(document.querySelectorAll("input[name='song']:checked")).map(cb => cb.value);
-      console.log("선택한 곡들:", checkedSongs);
-      localStorage.setItem("votedSongs", JSON.stringify(checkedSongs));
+      const checked = Array.from(document.querySelectorAll("input[name='song']:checked")).map(cb => cb.value);
+      console.log("투표한 곡:", checked);
+      localStorage.setItem("votedSongs", JSON.stringify(checked));
       document.getElementById("confirmation").classList.remove("hidden");
     });
   </script>
