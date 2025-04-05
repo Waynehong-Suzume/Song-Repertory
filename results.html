@@ -8,7 +8,6 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <script>
-    // 최초 방문은 허용, 새로고침 시 index.html로 이동
     if (performance.navigation.type === 1) {
       window.location.href = "index.html";
     }
@@ -41,8 +40,9 @@
         }
       }
 
-      const labels = Object.keys(counts);
-      const values = Object.values(counts);
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      const labels = sorted.map(([key]) => key);
+      const values = sorted.map(([, val]) => val);
 
       if (labels.length === 0) {
         document.getElementById("chart").outerHTML = "<p>아직 투표된 곡이 없습니다 😢</p>";
@@ -51,7 +51,8 @@
 
       const backgroundColors = [
         "#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5",
-        "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50"
+        "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50",
+        "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800"
       ];
 
       const ctx = document.getElementById("chart").getContext("2d");
