@@ -8,11 +8,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>📊 투표 결과 보기</h1>
-    <p class="subtitle">내가 선택한 곡들이 여기에 보여집니다.</p>
+    <h1>📊 내가 선택한 곡 목록</h1>
+    <p class="subtitle">내가 고른 곡들이 아래에 표시됩니다.</p>
     <ul id="resultsList">
     </ul>
-    <p><a href="index.html">← 돌아가기</a></p>
+    <p><a href="index.html">← 다시 투표하러 가기</a></p>
   </div>
 
   <script>
@@ -21,7 +21,7 @@
       const votedSongs = JSON.parse(localStorage.getItem("votedSongs")) || [];
 
       if (votedSongs.length === 0) {
-        list.innerHTML = "<li>투표한 곡이 없습니다.</li>";
+        list.innerHTML = "<li>아직 투표한 곡이 없습니다.</li>";
       } else {
         votedSongs.forEach(song => {
           const li = document.createElement("li");
