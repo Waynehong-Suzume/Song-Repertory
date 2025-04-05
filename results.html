@@ -27,14 +27,11 @@
 
     onValue(votesRef, snapshot => {
       const data = snapshot.val();
-      console.log("✅ 가져온 데이터:", data);
       const counts = {};
       if (data) {
         for (const song in data) {
           counts[song] = Object.keys(data[song]).length;
         }
-      } else {
-        console.warn("❌ 데이터 없음");
       }
 
       const labels = Object.keys(counts);
@@ -53,7 +50,8 @@
           datasets: [{
             label: "투표 수",
             data: values,
-            backgroundColor: "#4fc3f7"
+            backgroundColor: "#4fc3f7",
+            barThickness: 20
           }]
         },
         options: {
