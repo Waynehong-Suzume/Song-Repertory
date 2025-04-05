@@ -42,6 +42,12 @@
         return;
       }
 
+      const backgroundColors = [
+        "#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5",
+        "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50",
+        "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800"
+      ];
+
       const ctx = document.getElementById("chart").getContext("2d");
       new Chart(ctx, {
         type: "bar",
@@ -50,14 +56,34 @@
           datasets: [{
             label: "투표 수",
             data: values,
-            backgroundColor: "#4fc3f7",
+            backgroundColor: backgroundColors.slice(0, labels.length),
             barThickness: 20
           }]
         },
         options: {
+          layout: {
+            padding: {
+              top: 10,
+              bottom: 10,
+              left: 0,
+              right: 0
+            }
+          },
           indexAxis: 'y',
           scales: {
-            x: { beginAtZero: true }
+            x: {
+              beginAtZero: true,
+              grace: '5%'
+            }
+          },
+          plugins: {
+            legend: {
+              labels: {
+                font: {
+                  family: "GmarketSans"
+                }
+              }
+            }
           }
         }
       });
