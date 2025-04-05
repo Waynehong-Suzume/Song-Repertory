@@ -73,3 +73,12 @@ button:hover {
   font-weight: bold;
   color: #81c784;
 }
+
+ul.song-list li label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.4;
+  word-break: keep-all;
+  flex-wrap: wrap;
+}
