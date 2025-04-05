@@ -36,6 +36,16 @@ ul.song-list li {
   margin: 10px 0;
 }
 
+ul.song-list li label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.4;
+  word-break: break-word;
+  white-space: normal;
+  flex-wrap: nowrap;
+}
+
 input[type="checkbox"] {
   margin-right: 10px;
   width: 20px;
@@ -65,40 +75,4 @@ button {
 
 button:hover {
   background-color: #03a9f4;
-}
-
-.hidden {
-  display: none;
-}
-
-#confirmation {
-  margin-top: 20px;
-  font-weight: bold;
-  color: #81c784;
-}
-
-ul.song-list li label {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.4;
-  word-break: break-word;
-  white-space: normal;
-  flex-wrap: nowrap;
-}
-
-ul.song-list li label {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.4;
-  word-break: break-word;
-  white-space: normal;
-  flex-wrap: nowrap;
-}
-
-input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
 }
