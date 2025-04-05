@@ -84,13 +84,26 @@
               formatter: value => Math.round(value)
             }
           },
+          responsive: true,
+          maintainAspectRatio: false,
           scales: {
             x: {
               beginAtZero: true,
-              max: Math.max(...values) + 1,
               ticks: {
                 precision: 0,
                 stepSize: 1
+              }
+            },
+            y: {
+              ticks: {
+                callback: function(value) {
+                  const words = value.split(" ");
+                  return words.length > 2 ? words.slice(0, 2).join(" ") + '...' : value;
+                },
+                color: "#000",
+                font: {
+                  size: 11
+                }
               }
             }
           }
@@ -99,11 +112,21 @@
       });
     });
   </script>
+  <style>
+    #chart-wrapper {
+      width: 100%;
+      max-width: 600px;
+      height: 450px;
+      overflow-x: auto;
+    }
+  </style>
 </head>
 <body>
   <div class="container" style="max-width: 600px; padding-top: 10px; padding-bottom: 10px;">
     <h1>📊 실시간 투표 결과</h1>
-    <canvas id="chart" width="350" height="350"></canvas>
+    <div id="chart-wrapper">
+      <canvas id="chart"></canvas>
+    </div>
     <p><a href="index.html">← 다시 투표하기</a></p>
   </div>
 </body>
