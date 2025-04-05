@@ -1,4 +1,3 @@
-
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f4f4f9;
@@ -34,11 +33,31 @@ li {
   margin: 10px 0;
 }
 
-a {
-  text-decoration: none;
-  color: #0066cc;
+input[type="checkbox"] {
+  margin-right: 10px;
 }
 
-a:hover {
-  text-decoration: underline;
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005bb5;
+}
+
+.hidden {
+  display: none;
+}
+
+#confirmation {
+  margin-top: 20px;
+  font-weight: bold;
+  color: green;
 }
