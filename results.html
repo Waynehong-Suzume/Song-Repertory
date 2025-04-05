@@ -70,7 +70,7 @@
         options: {
           indexAxis: 'y',
           layout: {
-            padding: 10
+            padding: 0
           },
           plugins: {
             legend: { display: false },
@@ -87,9 +87,10 @@
           scales: {
             x: {
               beginAtZero: true,
-              grace: '5%',
+              max: Math.max(...values) + 1,
               ticks: {
-                precision: 0
+                precision: 0,
+                stepSize: 1
               }
             }
           }
@@ -100,9 +101,9 @@
   </script>
 </head>
 <body>
-  <div class="container">
+  <div class="container" style="max-width: 450px;">
     <h1>📊 실시간 투표 결과</h1>
-    <canvas id="chart" width="400" height="400"></canvas>
+    <canvas id="chart" width="280" height="500"></canvas>
     <p><a href="index.html">← 다시 투표하기</a></p>
   </div>
 </body>
