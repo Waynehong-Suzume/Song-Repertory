@@ -27,22 +27,13 @@ h1 {
   color: #ccc;
 }
 
-ul {
+ul.song-list {
   list-style: none;
   padding-left: 0;
 }
 
-li {
+ul.song-list li {
   margin: 10px 0;
-}
-
-a {
-  color: #4fc3f7;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 input[type="checkbox"] {
@@ -72,10 +63,4 @@ button:hover {
   margin-top: 20px;
   font-weight: bold;
   color: #81c784;
-}
-
-.song-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
