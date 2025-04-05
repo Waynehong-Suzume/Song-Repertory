@@ -6,6 +6,7 @@
   <title>투표 결과</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
     import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
@@ -44,8 +45,7 @@
 
       const backgroundColors = [
         "#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5",
-        "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50",
-        "#8bc34a", "#cddc39", "#ffeb3b", "#ffc107", "#ff9800"
+        "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4caf50"
       ];
 
       const ctx = document.getElementById("chart").getContext("2d");
@@ -55,37 +55,39 @@
           labels,
           datasets: [{
             label: "투표 수",
-            data: values,
+            data: values.map(v => Math.round(v)),
             backgroundColor: backgroundColors.slice(0, labels.length),
             barThickness: 20
           }]
         },
         options: {
+          indexAxis: 'y',
           layout: {
-            padding: {
-              top: 10,
-              bottom: 10,
-              left: 0,
-              right: 0
+            padding: 10
+          },
+          plugins: {
+            legend: { display: false },
+            datalabels: {
+              anchor: 'end',
+              align: 'right',
+              color: '#000',
+              font: {
+                weight: 'bold'
+              },
+              formatter: value => Math.round(value)
             }
           },
-          indexAxis: 'y',
           scales: {
             x: {
               beginAtZero: true,
-              grace: '5%'
-            }
-          },
-          plugins: {
-            legend: {
-              labels: {
-                font: {
-                  family: "GmarketSans"
-                }
+              grace: '5%',
+              ticks: {
+                precision: 0
               }
             }
           }
-        }
+        },
+        plugins: [ChartDataLabels]
       });
     });
   </script>
