@@ -3,33 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>투표 결과 보기</title>
+  <title>투표 결과</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBxg5nkxqOUgPcIOpKWix5j2HMf5PqCEZ4",
+      authDomain: "result-c03f9.firebaseapp.com",
+      projectId: "result-c03f9",
+      storageBucket: "result-c03f9.firebasestorage.app",
+      messagingSenderId: "619925483736",
+      appId: "1:619925483736:web:459b09d355994a4ff567ad",
+      measurementId: "G-BCRNTEQDDS",
+      databaseURL: "https://result-c03f9-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const votesRef = ref(db, "votes");
+
+    onValue(votesRef, snapshot => {
+      const data = snapshot.val();
+      const counts = {};
+      for (const song in data) {
+        counts[song] = Object.keys(data[song]).length;
+      }
+      const labels = Object.keys(counts);
+      const values = Object.values(counts);
+
+      new Chart(document.getElementById("chart"), {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "투표 수",
+            data: values,
+            backgroundColor: "#4fc3f7"
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          scales: {
+            x: { beginAtZero: true }
+          }
+        }
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="container">
-    <h1>📊 내가 선택한 곡 목록</h1>
-    <p class="subtitle">내가 고른 곡들이 아래에 표시됩니다.</p>
-    <ul id="resultsList">
-    </ul>
-    <p><a href="index.html">← 다시 투표하러 가기</a></p>
+    <h1>📊 실시간 투표 결과</h1>
+    <canvas id="chart" width="400" height="400"></canvas>
+    <p><a href="index.html">← 다시 투표하기</a></p>
   </div>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const list = document.getElementById("resultsList");
-      const votedSongs = JSON.parse(localStorage.getItem("votedSongs")) || [];
-
-      if (votedSongs.length === 0) {
-        list.innerHTML = "<li>아직 투표한 곡이 없습니다.</li>";
-      } else {
-        votedSongs.forEach(song => {
-          const li = document.createElement("li");
-          li.textContent = song;
-          list.appendChild(li);
-        });
-      }
-    });
-  </script>
 </body>
 </html>
