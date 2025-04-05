@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>투표 결과 보기</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📊 투표 결과 보기</h1>
+    <p class="subtitle">내가 선택한 곡들이 여기에 보여집니다.</p>
+    <ul id="resultsList">
+    </ul>
+    <p><a href="index.html">← 돌아가기</a></p>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const list = document.getElementById("resultsList");
+      const votedSongs = JSON.parse(localStorage.getItem("votedSongs")) || [];
+
+      if (votedSongs.length === 0) {
+        list.innerHTML = "<li>투표한 곡이 없습니다.</li>";
+      } else {
+        votedSongs.forEach(song => {
+          const li = document.createElement("li");
+          li.textContent = song;
+          list.appendChild(li);
+        });
+      }
+    });
+  </script>
+</body>
+</html>
