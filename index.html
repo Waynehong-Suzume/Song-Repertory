@@ -19,46 +19,48 @@
   </div>
 
   <script>
-    const songs = [
-      { title: "A Whole New World, 알라딘", url: "https://www.youtube.com/results?search_query=A+Whole+New+World+알라딘" },
-      { title: "Bundle of Joy, 인사이드 아웃", url: "https://www.youtube.com/results?search_query=Bundle+of+Joy+인사이드+아웃" },
-      { title: "How Far I’ll Go, 모아나", url: "https://www.youtube.com/results?search_query=How+Far+I’ll+Go+모아나" },
-      { title: "I See the Light, 라푼젤", url: "https://www.youtube.com/results?search_query=I+See+the+Light+라푼젤" },
-      { title: "Le Festin, 라따뚜이", url: "https://www.youtube.com/results?search_query=Le+Festin+라따뚜이" },
-      { title: "Sparkle, 너의 이름은", url: "https://www.youtube.com/results?search_query=Sparkle+너의+이름은" },
-      { title: "Steal The Show, 엘리멘탈", url: "https://www.youtube.com/results?search_query=Steal+The+Show+엘리멘탈" },
-      { title: "This is me, 위대한 쇼맨", url: "https://www.youtube.com/results?search_query=This+is+me+위대한+쇼맨" },
-      { title: "Try Everything, 주토피아", url: "https://www.youtube.com/results?search_query=Try+Everything+주토피아" },
-      { title: "すずめ (Suzume), 스즈메의 문단속", url: "https://www.youtube.com/results?search_query=すずめ+(Suzume)+스즈메의+문단속" },
-      { title: "너를 태우고, 천공의 성 라퓨타", url: "https://www.youtube.com/results?search_query=너를+태우고+천공의+성+라퓨타" },
-      { title: "바다가 보이는 마을, 마녀 배달부 키키", url: "https://www.youtube.com/results?search_query=바다가+보이는+마을+마녀+배달부+키키" },
-      { title: "벼랑 위의 포뇨, 벼랑 위의 포뇨", url: "https://www.youtube.com/results?search_query=벼랑+위의+포뇨+벼랑+위의+포뇨" },
-      { title: "산책, 이웃집 토토로", url: "https://www.youtube.com/results?search_query=산책+이웃집+토토로" },
-      { title: "세계의 약속, 하울의 움직이는 성", url: "https://www.youtube.com/results?search_query=세계의+약속+하울의+움직이는+성" },
-      { title: "아시타카의 전설, 원령공주", url: "https://www.youtube.com/results?search_query=아시타카의+전설+원령공주" },
-      { title: "어느 여름날, 센과 치히로의 행방불명", url: "https://www.youtube.com/results?search_query=어느+여름날+센과+치히로의+행방불명" },
-      { title: "오월의 마을, 이웃집 토토로", url: "https://www.youtube.com/results?search_query=오월의+마을+이웃집+토토로" },
-      { title: "인생의 회전목마, 하울의 움직이는 성", url: "https://www.youtube.com/results?search_query=인생의+회전목마+하울의+움직이는+성" }
-    ];
+    document.addEventListener("DOMContentLoaded", function () {
+      const songs = [
+        { title: "A Whole New World, 알라딘", url: "https://www.youtube.com/results?search_query=A+Whole+New+World+알라딘" },
+        { title: "Bundle of Joy, 인사이드 아웃", url: "https://www.youtube.com/results?search_query=Bundle+of+Joy+인사이드+아웃" },
+        { title: "How Far I’ll Go, 모아나", url: "https://www.youtube.com/results?search_query=How+Far+I’ll+Go+모아나" },
+        { title: "I See the Light, 라푼젤", url: "https://www.youtube.com/results?search_query=I+See+the+Light+라푼젤" },
+        { title: "Le Festin, 라따뚜이", url: "https://www.youtube.com/results?search_query=Le+Festin+라따뚜이" },
+        { title: "Sparkle, 너의 이름은", url: "https://www.youtube.com/results?search_query=Sparkle+너의+이름은" },
+        { title: "Steal The Show, 엘리멘탈", url: "https://www.youtube.com/results?search_query=Steal+The+Show+엘리멘탈" },
+        { title: "This is me, 위대한 쇼맨", url: "https://www.youtube.com/results?search_query=This+is+me+위대한+쇼맨" },
+        { title: "Try Everything, 주토피아", url: "https://www.youtube.com/results?search_query=Try+Everything+주토피아" },
+        { title: "すずめ (Suzume), 스즈메의 문단속", url: "https://www.youtube.com/results?search_query=すずめ+(Suzume)+스즈메의+문단속" },
+        { title: "너를 태우고, 천공의 성 라퓨타", url: "https://www.youtube.com/results?search_query=너를+태우고+천공의+성+라퓨타" },
+        { title: "바다가 보이는 마을, 마녀 배달부 키키", url: "https://www.youtube.com/results?search_query=바다가+보이는+마을+마녀+배달부+키키" },
+        { title: "벼랑 위의 포뇨, 벼랑 위의 포뇨", url: "https://www.youtube.com/results?search_query=벼랑+위의+포뇨+벼랑+위의+포뇨" },
+        { title: "산책, 이웃집 토토로", url: "https://www.youtube.com/results?search_query=산책+이웃집+토토로" },
+        { title: "세계의 약속, 하울의 움직이는 성", url: "https://www.youtube.com/results?search_query=세계의+약속+하울의+움직이는+성" },
+        { title: "아시타카의 전설, 원령공주", url: "https://www.youtube.com/results?search_query=아시타카의+전설+원령공주" },
+        { title: "어느 여름날, 센과 치히로의 행방불명", url: "https://www.youtube.com/results?search_query=어느+여름날+센과+치히로의+행방불명" },
+        { title: "오월의 마을, 이웃집 토토로", url: "https://www.youtube.com/results?search_query=오월의+마을+이웃집+토토로" },
+        { title: "인생의 회전목마, 하울의 움직이는 성", url: "https://www.youtube.com/results?search_query=인생의+회전목마+하울의+움직이는+성" }
+      ];
 
-    const list = document.getElementById("songList");
-    songs.forEach((song, index) => {
-      const li = document.createElement("li");
-      li.innerHTML = \`
-        <label class="song-item">
-          <input type="checkbox" name="song" value="\${song.title}" />
-          <a href="\${song.url}" target="_blank">\${song.title}</a>
-        </label>
-      \`;
-      list.appendChild(li);
-    });
+      const list = document.getElementById("songList");
+      songs.forEach((song, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = \`
+          <label class="song-item">
+            <input type="checkbox" name="song" value="\${song.title}" />
+            <a href="\${song.url}" target="_blank">\${song.title}</a>
+          </label>
+        \`;
+        list.appendChild(li);
+      });
 
-    document.getElementById("voteForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const checked = Array.from(document.querySelectorAll("input[name='song']:checked")).map(cb => cb.value);
-      console.log("투표한 곡:", checked);
-      localStorage.setItem("votedSongs", JSON.stringify(checked));
-      document.getElementById("confirmation").classList.remove("hidden");
+      document.getElementById("voteForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const checked = Array.from(document.querySelectorAll("input[name='song']:checked")).map(cb => cb.value);
+        console.log("투표한 곡:", checked);
+        localStorage.setItem("votedSongs", JSON.stringify(checked));
+        document.getElementById("confirmation").classList.remove("hidden");
+      });
     });
   </script>
 </body>
