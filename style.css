@@ -76,10 +76,16 @@ button:hover {
 
 ul.song-list li label {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   line-height: 1.4;
   word-break: break-word;
   white-space: normal;
   flex-wrap: nowrap;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
