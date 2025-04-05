@@ -79,6 +79,7 @@ ul.song-list li label {
   align-items: center;
   gap: 10px;
   line-height: 1.4;
-  word-break: keep-all;
-  flex-wrap: wrap;
+  word-break: break-word;
+  white-space: normal;
+  flex-wrap: nowrap;
 }
