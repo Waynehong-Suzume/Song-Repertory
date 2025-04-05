@@ -29,12 +29,7 @@
       selections.forEach(song => {
         push(ref(db, "votes/" + song.replaceAll(".", "").replaceAll("/", "")), true);
       });
-      const confirmation = document.getElementById("confirmation");
-      confirmation.classList.remove("hidden");
-      setTimeout(() => {
-        confirmation.classList.add("hidden");
-        window.location.href = "results.html";
-      }, 3000);
+      window.location.href = "results.html";
     };
   </script>
 </head>
@@ -56,7 +51,6 @@
       </ul>
       <button type="submit">🎤 투표 제출</button>
     </form>
-    <p id="confirmation" class="hidden">✅ 감사합니다! 투표가 제출되었습니다.</p>
   </div>
 </body>
 </html>
