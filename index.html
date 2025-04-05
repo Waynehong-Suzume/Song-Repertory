@@ -29,7 +29,11 @@
       selections.forEach(song => {
         push(ref(db, "votes/" + song.replaceAll(".", "").replaceAll("/", "")), true);
       });
-      window.location.href = "results.html";
+      const msg = document.getElementById("confirmation");
+      msg.classList.remove("hidden");
+      setTimeout(() => {
+        msg.classList.add("hidden");
+      }, 2000);
     };
   </script>
 </head>
@@ -51,6 +55,9 @@
       </ul>
       <button type="submit">🎤 투표 제출</button>
     </form>
+    <p id="confirmation" class="hidden" style="color: green; font-weight: bold; margin-top: 15px;">✅ 투표가 완료되었습니다!</p>
+    <hr style="margin: 30px 0;" />
+    <p><a href="results.html">📊 실시간 결과 보기</a></p>
   </div>
 </body>
 </html>
