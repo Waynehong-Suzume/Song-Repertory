@@ -3,44 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>후즈아트 공연 후보곡 & 투표</title>
+  <title>후즈아트 공연 투표</title>
   <link rel="stylesheet" href="style.css" />
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBxg5nkxqOUgPcIOpKWix5j2HMf5PqCEZ4",
+      authDomain: "result-c03f9.firebaseapp.com",
+      projectId: "result-c03f9",
+      storageBucket: "result-c03f9.firebasestorage.app",
+      messagingSenderId: "619925483736",
+      appId: "1:619925483736:web:459b09d355994a4ff567ad",
+      measurementId: "G-BCRNTEQDDS",
+      databaseURL: "https://result-c03f9-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    window.submitVote = () => {
+      const checkboxes = document.querySelectorAll("input[name='song']:checked");
+      const selections = Array.from(checkboxes).map(cb => cb.value);
+      selections.forEach(song => {
+        push(ref(db, "votes/" + song.replaceAll(".", "").replaceAll("/", "")), true);
+      });
+      const confirmation = document.getElementById("confirmation");
+      confirmation.classList.remove("hidden");
+      setTimeout(() => {
+        confirmation.classList.add("hidden");
+        window.location.href = "results.html";
+      }, 3000);
+    };
+  </script>
 </head>
 <body>
   <div class="container">
-    <h1>🎶 예술기획단체 후즈아트 10기 청바지팀 공연 후보곡</h1>
-    <p class="subtitle">이번 공연에 사용할 음악들입니다. 마음에 드는 곡을 체크하고 유튜브에서 들어보세요!</p>
-    <form id="voteForm">
-      <ul id="songList">
-        <li><label class="song-item"><input type="checkbox" name="song" value="A Whole New World, 알라딘" /><a href="https://www.youtube.com/results?search_query=A+Whole+New+World+알라딘" target="_blank">A Whole New World, 알라딘</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="Bundle of Joy, 인사이드 아웃" /><a href="https://www.youtube.com/results?search_query=Bundle+of+Joy+인사이드+아웃" target="_blank">Bundle of Joy, 인사이드 아웃</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="How Far I’ll Go, 모아나" /><a href="https://www.youtube.com/results?search_query=How+Far+I’ll+Go+모아나" target="_blank">How Far I’ll Go, 모아나</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="I See the Light, 라푼젤" /><a href="https://www.youtube.com/results?search_query=I+See+the+Light+라푼젤" target="_blank">I See the Light, 라푼젤</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="Le Festin, 라따뚜이" /><a href="https://www.youtube.com/results?search_query=Le+Festin+라따뚜이" target="_blank">Le Festin, 라따뚜이</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="Sparkle, 너의 이름은" /><a href="https://www.youtube.com/results?search_query=Sparkle+너의+이름은" target="_blank">Sparkle, 너의 이름은</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="Steal The Show, 엘리멘탈" /><a href="https://www.youtube.com/results?search_query=Steal+The+Show+엘리멘탈" target="_blank">Steal The Show, 엘리멘탈</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="This is me, 위대한 쇼맨" /><a href="https://www.youtube.com/results?search_query=This+is+me+위대한+쇼맨" target="_blank">This is me, 위대한 쇼맨</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="Try Everything, 주토피아" /><a href="https://www.youtube.com/results?search_query=Try+Everything+주토피아" target="_blank">Try Everything, 주토피아</a></label></li>
+    <h1>🎶 청바지팀 공연 투표</h1>
+    <p class="subtitle">마음에 드는 곡을 모두 선택하고 투표해주세요!</p>
+    <form onsubmit="event.preventDefault(); submitVote();">
+      <ul class="song-list">
+        <li><label><input type="checkbox" name="song" value="A Whole New World, 알라딘" />A Whole New World, 알라딘</label></li>
+        <li><label><input type="checkbox" name="song" value="Bundle of Joy, 인사이드 아웃" />Bundle of Joy, 인사이드 아웃</label></li>
+        <li><label><input type="checkbox" name="song" value="How Far I’ll Go, 모아나" />How Far I’ll Go, 모아나</label></li>
+        <li><label><input type="checkbox" name="song" value="I See the Light, 라푼젤" />I See the Light, 라푼젤</label></li>
+        <li><label><input type="checkbox" name="song" value="Le Festin, 라따뚜이" />Le Festin, 라따뚜이</label></li>
+        <li><label><input type="checkbox" name="song" value="Sparkle, 너의 이름은" />Sparkle, 너의 이름은</label></li>
+        <li><label><input type="checkbox" name="song" value="Steal The Show, 엘리멘탈" />Steal The Show, 엘리멘탈</label></li>
+        <li><label><input type="checkbox" name="song" value="This is me, 위대한 쇼맨" />This is me, 위대한 쇼맨</label></li>
+        <li><label><input type="checkbox" name="song" value="Try Everything, 주토피아" />Try Everything, 주토피아</label></li>
       </ul>
       <button type="submit">🎤 투표 제출</button>
     </form>
     <p id="confirmation" class="hidden">✅ 감사합니다! 투표가 제출되었습니다.</p>
   </div>
-
-  <script>
-    document.getElementById("voteForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const checked = Array.from(document.querySelectorAll("input[name='song']:checked")).map(cb => cb.value);
-      localStorage.setItem("votedSongs", JSON.stringify(checked));
-
-      const msg = document.getElementById("confirmation");
-      msg.classList.remove("hidden");
-
-      setTimeout(() => {
-        msg.classList.add("hidden");
-        window.location.href = "results.html";
-      }, 3000);
-    });
-  </script>
 </body>
 </html>
