@@ -24,24 +24,33 @@
     const db = getDatabase(app);
 
     window.submitVote = () => {
-      if (localStorage.getItem("voted") === "yes") {
-        alert("⚠️ 이미 투표하셨습니다. 한 번만 투표할 수 있어요!");
-        return;
-      }
+  const checkboxes = document.querySelectorAll("input[name='song']:checked");
 
-      const checkboxes = document.querySelectorAll("input[name='song']:checked");
-      if (checkboxes.length === 0) {
-        alert("⚠️ 최소 한 곡 이상 선택해주세요!");
-        return;
-      }
-      const selections = Array.from(checkboxes).map(cb => cb.value);
-      selections.forEach(song => {
-        push(ref(db, "votes/" + song.replaceAll(".", "").replaceAll("/", "")), true);
-      });
-      alert("✅ 투표가 완료되었습니다!");
-      localStorage.setItem("voted", "yes");
-      document.querySelectorAll("input[name='song']").forEach(cb => cb.checked = false);
-    };
+  // 이미 투표했지만 체크박스 아무것도 선택 안 한 경우
+  if (localStorage.getItem("voted") === "yes") {
+    if (checkboxes.length === 0) {
+      alert("⚠️ 최소 한 곡 이상 선택해주세요!");
+    } else {
+      alert("🚫 이미 투표하셨습니다. 한 번만 투표할 수 있어요!");
+    }
+    return;
+  }
+
+  // 처음 투표인데 체크 안 했을 경우
+  if (checkboxes.length === 0) {
+    alert("⚠️ 최소 한 곡 이상 선택해주세요!");
+    return;
+  }
+
+  // 정상 투표 진행
+  const selections = Array.from(checkboxes).map(cb => cb.value);
+  selections.forEach(song => {
+    push(ref(db, "votes/" + song.replaceAll(".", "").replaceAll("/", "")), true);
+  });
+  alert("✅ 투표가 완료되었습니다!");
+  localStorage.setItem("voted", "yes");
+  document.querySelectorAll("input[name='song']").forEach(cb => cb.checked = false);
+};
   </script>
 </head>
 <body>
