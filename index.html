@@ -21,8 +21,6 @@
         <li><label class="song-item"><input type="checkbox" name="song" value="Steal The Show, 엘리멘탈" /><a href="https://www.youtube.com/results?search_query=Steal+The+Show+엘리멘탈" target="_blank">Steal The Show, 엘리멘탈</a></label></li>
         <li><label class="song-item"><input type="checkbox" name="song" value="This is me, 위대한 쇼맨" /><a href="https://www.youtube.com/results?search_query=This+is+me+위대한+쇼맨" target="_blank">This is me, 위대한 쇼맨</a></label></li>
         <li><label class="song-item"><input type="checkbox" name="song" value="Try Everything, 주토피아" /><a href="https://www.youtube.com/results?search_query=Try+Everything+주토피아" target="_blank">Try Everything, 주토피아</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="너를 태우고, 천공의 성 라퓨타" /><a href="https://www.youtube.com/results?search_query=너를+태우고+천공의+성+라퓨타" target="_blank">너를 태우고, 천공의 성 라퓨타</a></label></li>
-        <li><label class="song-item"><input type="checkbox" name="song" value="인생의 회전목마, 하울의 움직이는 성" /><a href="https://www.youtube.com/results?search_query=인생의+회전목마+하울의+움직이는+성" target="_blank">인생의 회전목마, 하울의 움직이는 성</a></label></li>
       </ul>
       <button type="submit">🎤 투표 제출</button>
     </form>
@@ -33,9 +31,15 @@
     document.getElementById("voteForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const checked = Array.from(document.querySelectorAll("input[name='song']:checked")).map(cb => cb.value);
-      console.log("투표한 곡:", checked);
       localStorage.setItem("votedSongs", JSON.stringify(checked));
-      document.getElementById("confirmation").classList.remove("hidden");
+
+      const msg = document.getElementById("confirmation");
+      msg.classList.remove("hidden");
+
+      setTimeout(() => {
+        msg.classList.add("hidden");
+        window.location.href = "results.html";
+      }, 3000);
     });
   </script>
 </body>
