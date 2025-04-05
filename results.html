@@ -75,8 +75,8 @@
           plugins: {
             legend: { display: false },
             datalabels: {
-              anchor: 'end',
-              align: 'right',
+              anchor: 'start',
+              align: 'left',
               color: '#000',
               font: {
                 weight: 'bold'
@@ -98,10 +98,8 @@
               ticks: {
                 color: "#000",
                 font: {
-                  size: 9
-                },
-                maxRotation: 0,
-                minRotation: 0
+                  size: 11
+                }
               }
             }
           }
@@ -120,10 +118,10 @@
   </style>
 </head>
 <body>
-  <div class="container" style="max-width: 600px; padding-top: 10px; padding-bottom: 10px;">
+  <div class="container" style="max-width: 800px; padding-top: 10px; padding-bottom: 10px;">
     <h1>📊 실시간 투표 결과</h1>
     <div id="chart-wrapper">
-      <canvas id="chart" width="400" height="1000" style="max-width: 100%;"></canvas>
+      <canvas id="chart" width="600" height="1000" style="max-width: 100%;"></canvas>
     </div>
     <p><a href="index.html">← 다시 투표하기</a></p>
   </div>
