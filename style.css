@@ -75,8 +75,8 @@ button:hover {
 }
 
 ul.song-list li label {
-  display: flex;
-  align-items: flex-start;
+  display: inline-flex;
+  align-items: center;
   gap: 10px;
   line-height: 1.4;
   word-break: keep-all;
